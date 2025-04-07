@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Paaji ka bhajji</title>
     <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+      defer
+    ></script>
     <script>
       tailwind.config = {
         theme: {
@@ -105,13 +109,15 @@
   </head>
   <body class="bg-[#FAF9F6]">
     <!-- Navigation -->
+    <!-- Navigation -->
     <nav
       class="fixed top-0 left-0 right-0 z-50 bg-white bg-opacity-90 shadow-sm"
+      x-data="{ mobileMenuOpen: false }"
     >
       <div
         class="container mx-auto px-6 py-4 flex justify-between items-center"
       >
-        <a href="" class="text-3xl font-['Pacifico'] text-primary"
+        <a href="#" class="text-3xl font-['Pacifico'] text-primary"
           >Paaji Ka Bhajji</a
         >
 
@@ -141,11 +147,38 @@
         </div>
 
         <!-- Mobile Navigation Button -->
-        <div class="md:hidden w-10 h-10 flex items-center justify-center">
-          <button class="text-gray-700 focus:outline-none">
-            <i class="ri-menu-line ri-lg"></i>
+        <div class="md:hidden">
+          <button
+            @click="mobileMenuOpen = !mobileMenuOpen"
+            class="text-gray-700 focus:outline-none"
+          >
+            <i
+              :class="mobileMenuOpen ? 'ri-close-line' : 'ri-menu-line'"
+              class="ri-lg"
+            ></i>
           </button>
         </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div
+        x-show="mobileMenuOpen"
+        x-transition
+        class="md:hidden bg-white px-6 pt-4 pb-6 space-y-4"
+      >
+        <a href="#home" class="block text-primary font-medium">Home</a>
+        <a href="#menu" class="block text-gray-700 hover:text-primary">Menu</a>
+        <a href="#about" class="block text-gray-700 hover:text-primary"
+          >About</a
+        >
+        <a href="#contact" class="block text-gray-700 hover:text-primary"
+          >Contact</a
+        >
+        <button
+          class="w-full bg-primary text-white px-6 py-2 !rounded-button hover:bg-opacity-90"
+        >
+          Order Now
+        </button>
       </div>
     </nav>
 
